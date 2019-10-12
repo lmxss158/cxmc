@@ -1,0 +1,468 @@
+﻿{
+  "parentSid": -1516122,
+  "leaf": false,
+  "resId": "CXMC",
+  "sid": -1516133,
+  "resName": "管理驾驶舱",
+  "items": [
+    {
+      "parentSid": -1516133,
+      "leaf": false,
+      "resId": "MCJT",
+      "sid": -1516216,
+      "resName": "股份",
+      "items": [
+        {
+          "parentSid": -1516216,
+          "leaf": true,
+          "resId": "MCZL",
+          "sid": -1516245,
+          "resName": "总览"
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCFI",
+          "sid": -1516255,
+          "resName": "财务管理",
+          "items": [
+            {
+              "parentSid": -1516255,
+              "leaf": true,
+              "resId": "MCFIZYZB",
+              "sid": -1516259,
+              "resName": "主要指标"
+            },
+            {
+              "parentSid": -1516255,
+              "leaf": true,
+              "resId": "MCFIGXCBGF",
+              "sid": 19775,
+              "resName": "工序成本"
+            },
+            {
+              "parentSid": -1516255,
+              "leaf": true,
+              "resId": "MCFICBGC",
+              "sid": -1516267,
+              "resName": "成本构成"
+            },
+            {
+              "parentSid": -1516255,
+              "leaf": true,
+              "resId": "MCFICPYLNL",
+              "sid": -1516256,
+              "resName": "产品盈利能力"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCZZ",
+          "sid": -1516252,
+          "resName": "制造管理",
+          "items": [
+            {
+              "parentSid": -1516252,
+              "leaf": true,
+              "resId": "MCZZCLGL",
+              "sid": -1516260,
+              "resName": "产量管理"
+            },
+            {
+              "parentSid": -1516252,
+              "leaf": true,
+              "resId": "MCZZKC",
+              "sid": -1516266,
+              "resName": "库存管理"
+            },
+            {
+              "parentSid": -1516252,
+              "leaf": false,
+              "resId": "MCZZJSZB",
+              "sid": -1516257,
+              "resName": "技术指标",
+              "items": [
+                {
+                  "parentSid": -1516257,
+                  "leaf": true,
+                  "resId": "MCZZGJZB",
+                  "sid": -1516269,
+                  "resName": "关键指标"
+                },
+                {
+                  "parentSid": -1516257,
+                  "leaf": true,
+                  "resId": "MCZZGXZB",
+                  "sid": -1516268,
+                  "resName": "工序指标"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCXS",
+          "sid": -1516248,
+          "resName": "销售管理",
+          "items": [
+            {
+              "parentSid": -1516248,
+              "leaf": true,
+              "resId": "MCXSDDGL",
+              "sid": -1516264,
+              "resName": "订单管理"
+            },
+            {
+              "parentSid": -1516248,
+              "leaf": true,
+              "resId": "MCXSCPTJ",
+              "sid": -1516262,
+              "resName": "产品推进"
+            },
+            {
+              "parentSid": -1516248,
+              "leaf": true,
+              "resId": "MCXSKHFW",
+              "sid": -1516265,
+              "resName": "客户服务"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": true,
+          "resId": "MCWL",
+          "sid": -1516254,
+          "resName": "物流运输"
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCCG",
+          "sid": -1516247,
+          "resName": "采购管理",
+          "items": [
+            {
+              "parentSid": -1516247,
+              "leaf": true,
+              "resId": "MCCGCGGY",
+              "sid": -1516263,
+              "resName": "采购供应"
+            },
+            {
+              "parentSid": -1516247,
+              "leaf": true,
+              "resId": "MCCGYRLKC",
+              "sid": -1516258,
+              "resName": "原燃料库存"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": true,
+          "resId": "MCSB",
+          "sid": -1516250,
+          "resName": "设备管理"
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCNH",
+          "sid": -1516246,
+          "resName": "能环管理",
+          "items": [
+            {
+              "parentSid": -1516246,
+              "leaf": true,
+              "resId": "MCHJ",
+              "sid": 19205,
+              "resName": "环境管理"
+            },
+            {
+              "parentSid": -1516246,
+              "leaf": true,
+              "resId": "MCNY",
+              "sid": 19206,
+              "resName": "能源管理"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCRL",
+          "sid": -1516251,
+          "resName": "人力资源",
+          "items": [
+            {
+              "parentSid": -1516251,
+              "leaf": true,
+              "resId": "MCRLDGLCL",
+              "sid": 19208,
+              "resName": "吨钢、劳产率"
+            },
+            {
+              "parentSid": -1516251,
+              "leaf": true,
+              "resId": "MCRLQMRS",
+              "sid": 19207,
+              "resName": "期末人数"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516216,
+          "leaf": false,
+          "resId": "MCPRO",
+          "sid": -1516253,
+          "resName": "项目管理",
+          "items": [
+            {
+              "parentSid": -1516253,
+              "leaf": true,
+              "resId": "MCPRO1",
+              "sid": 19210,
+              "resName": "项目-1"
+            },
+            {
+              "parentSid": -1516253,
+              "leaf": true,
+              "resId": "MCPRO2",
+              "sid": 19213,
+              "resName": "项目-2"
+            },
+            {
+              "parentSid": -1516253,
+              "leaf": true,
+              "resId": "MCPRO3",
+              "sid": 19209,
+              "resName": "项目-3"
+            },
+            {
+              "parentSid": -1516253,
+              "leaf": true,
+              "resId": "MCPRO4",
+              "sid": 19212,
+              "resName": "项目-4"
+            },
+            {
+              "parentSid": -1516253,
+              "leaf": true,
+              "resId": "MCPRO5",
+              "sid": 19211,
+              "resName": "项目-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "parentSid": -1516133,
+      "leaf": false,
+      "resId": "MCQS",
+      "sid": -1516199,
+      "resName": "京唐",
+      "items": [
+        {
+          "parentSid": -1516199,
+          "leaf": true,
+          "resId": "QSZL",
+          "sid": -1516219,
+          "resName": "总览"
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": false,
+          "resId": "SS02",
+          "sid": -1516227,
+          "resName": "制造管理",
+          "items": [
+            {
+              "parentSid": -1516227,
+              "leaf": true,
+              "resId": "SS0201",
+              "sid": -1516228,
+              "resName": "产量管理"
+            },
+            {
+              "parentSid": -1516227,
+              "leaf": true,
+              "resId": "SS0202",
+              "sid": -1516231,
+              "resName": "库存管理"
+            },
+            {
+              "parentSid": -1516227,
+              "leaf": true,
+              "resId": "SS0203",
+              "sid": -1516229,
+              "resName": "工序指标"
+            },
+            {
+              "parentSid": -1516227,
+              "leaf": true,
+              "resId": "SS0204",
+              "sid": -1516230,
+              "resName": "关键指标"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": true,
+          "resId": "SS03",
+          "sid": -1516225,
+          "resName": "设备管理"
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": false,
+          "resId": "SS04",
+          "sid": -1516223,
+          "resName": "财务管理",
+          "items": [
+            {
+              "parentSid": -1516223,
+              "leaf": true,
+              "resId": "SS0401",
+              "sid": -1516243,
+              "resName": "主要指标"
+            },
+            {
+              "parentSid": -1516223,
+              "leaf": true,
+              "resId": "SS0402",
+              "sid": -1516239,
+              "resName": "成本构成"
+            },
+            {
+              "parentSid": -1516223,
+              "leaf": true,
+              "resId": "SS0403",
+              "sid": -1516244,
+              "resName": "工序成本"
+            },
+            {
+              "parentSid": -1516223,
+              "leaf": true,
+              "resId": "SS0404",
+              "sid": -1516240,
+              "resName": "产品盈利能力"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": false,
+          "resId": "SS05",
+          "sid": -1516222,
+          "resName": "能环管理",
+          "items": [
+            {
+              "parentSid": -1516222,
+              "leaf": true,
+              "resId": "SS0501",
+              "sid": -1516232,
+              "resName": "环境管理"
+            },
+            {
+              "parentSid": -1516222,
+              "leaf": true,
+              "resId": "SS0502",
+              "sid": -1516242,
+              "resName": "能源管理"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": false,
+          "resId": "SS06",
+          "sid": -1516220,
+          "resName": "采购管理",
+          "items": [
+            {
+              "parentSid": -1516220,
+              "leaf": true,
+              "resId": "SS0601",
+              "sid": -1516238,
+              "resName": "采购供应"
+            },
+            {
+              "parentSid": -1516220,
+              "leaf": true,
+              "resId": "SS0602",
+              "sid": -1516236,
+              "resName": "原燃料库存"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": false,
+          "resId": "SS07",
+          "sid": -1516224,
+          "resName": "营销管理",
+          "items": [
+            {
+              "parentSid": -1516224,
+              "leaf": true,
+              "resId": "SS0701",
+              "sid": -1516237,
+              "resName": "订单管理"
+            },
+            {
+              "parentSid": -1516224,
+              "leaf": true,
+              "resId": "SS0702",
+              "sid": -1516241,
+              "resName": "客户服务"
+            },
+            {
+              "parentSid": -1516224,
+              "leaf": true,
+              "resId": "SS0703",
+              "sid": -1516233,
+              "resName": "产品推进"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": false,
+          "resId": "QSRZ",
+          "sid": -1516221,
+          "resName": "人力资源",
+          "items": [
+            {
+              "parentSid": -1516221,
+              "leaf": true,
+              "resId": "QSRZ01",
+              "sid": -1516234,
+              "resName": "劳产率、吨钢人工费"
+            },
+            {
+              "parentSid": -1516221,
+              "leaf": true,
+              "resId": "QSRZ02",
+              "sid": -1516235,
+              "resName": "期末人数"
+            }
+          ]
+        },
+        {
+          "parentSid": -1516199,
+          "leaf": true,
+          "resId": "SS09",
+          "sid": -1516226,
+          "resName": "物流运输"
+        }
+      ]
+    }
+  ]
+}

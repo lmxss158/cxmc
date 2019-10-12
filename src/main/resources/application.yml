@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    # test
+    #url: jdbc:db2://10.68.28.25:50049/sgdw
+    # production
+    url: jdbc:db2://10.68.20.29:50049/sgdw
+    username: db2inst1
+    password: db2inst1
+    driver-class-name: com.ibm.db2.jcc.DB2Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+
