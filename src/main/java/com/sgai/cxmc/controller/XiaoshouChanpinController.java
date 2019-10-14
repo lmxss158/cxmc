@@ -268,17 +268,17 @@ public class XiaoshouChanpinController {
     }
 
     /**
-     * 销售管理-产品推进-产品开发与认证-月度供货量及新试产品供货量趋势图(热系、汽车板、酸洗、冷轧非汽车)
+     * 销售管理-产品推进-产品开发与认证-月度供货量及新试产品供货量趋势图(热系、汽车板、酸洗、电工钢)
      * @param subCode
      * @return
      */
     @GetMapping("/rqslghl/ydghjxsghqst")
     @ResponseBody
     public JsonData cpRqslghlYdghjxsghqst(@RequestParam("subCode") String subCode,
-                                          @RequestParam("tabCode") String tabCode,
+                                          @RequestParam("tableCode") String tableCode,
                                           @RequestParam("productCode") String productCode) {
 
-        String tabName = getKfrzTypeName(tabCode);
+        String tabName = getKfrzTypeName(tableCode);
         String productName = getGhlqstTypeName(productCode);
         if (null == tabName && null == productName) {
             return JsonData.fail("无效参数");
@@ -359,7 +359,7 @@ public class XiaoshouChanpinController {
     }
 
     /**
-     * 销售管理-产品推进-产品开发与认证-EVI供货量-EVI项目数(热轧卷板、汽车板、酸洗、冷轧非汽车)
+     * 销售管理-产品推进-产品开发与认证-EVI供货量-EVI项目数(热轧卷板、汽车板、酸洗、电工钢)
      * @param subCode
      * @return
      */
@@ -375,7 +375,7 @@ public class XiaoshouChanpinController {
     }
 
     /**
-     * 销售管理-产品推进-产品开发与认证-EVI供货量-年度计划与月度完成(热轧卷板、汽车板、酸洗、冷轧非汽车)
+     * 销售管理-产品推进-产品开发与认证-EVI供货量-年度计划与月度完成(热轧卷板、汽车板、酸洗、电工钢)
      * @param subCode
      * @return
      */
@@ -390,7 +390,7 @@ public class XiaoshouChanpinController {
         return JsonData.success(getXiaoshouService(subCode).cpGfhjghlRqslJhwc(typeName));
     }
     /**
-     * 销售管理-产品推进-产品开发与认证-EVI供货量-年度累计完成与年度累计同比热轧卷板(热轧卷板、汽车板、酸洗、冷轧非汽车)
+     * 销售管理-产品推进-产品开发与认证-EVI供货量-年度累计完成与年度累计同比热轧卷板(热轧卷板、汽车板、酸洗、电工钢)
      * @param subCode
      * @return
      */
@@ -430,10 +430,6 @@ public class XiaoshouChanpinController {
     @GetMapping("/xscpxlnlj")
     @ResponseBody
     public JsonData cpXscpxlnlj(@RequestParam("subCode") String subCode) {
-//        String typeName = getKfrzTypeName(typeCode);
-//        if (null == typeName) {
-//            return JsonData.fail("无效参数");
-//        }
         return JsonData.success(getXiaoshouService(subCode).cpXscpxlnlj());
     }
 
@@ -469,8 +465,8 @@ public class XiaoshouChanpinController {
                 return "酸洗";
             case "qcb":
                 return "汽车板";
-            case "lzfqc":
-                return "冷轧非汽车";
+            case "dgg":
+                return "电工钢";
             default:
                 return null;
         }

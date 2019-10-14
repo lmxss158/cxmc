@@ -24,4 +24,14 @@ public interface NenghuanGuanliService {
     Object getPwzlKedysj();
 
     Object getPwzlTbjhb(String typeName);
+
+    Object getPwzlYdqst(String typeName);
+
+    Object getPwzlLj(String typeName);
+
+    Object getNyglYdsj();
+
+    Object getNyglNdsj();
+
+    Object getNyglYdqdt( String typeName );
 }

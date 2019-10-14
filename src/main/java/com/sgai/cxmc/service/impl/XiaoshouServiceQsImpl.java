@@ -144,11 +144,10 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
         String sql = "select calendar, zb_code, zb_name, round((zb_value / 10000), 2) zb_value\n"
                 + "from sgmc.MC_SA_ZB_SO_01\n"
                 + "where zb_name like '%次月接单量%'\n"
-                + "  -- and calendar = to_char(current date + 1 month, 'yyyy-mm')\n"
-                + "  and (\n"
+                + "  and calendar = (\n"
                 + "    case\n"
-                + "        when calendar = to_char(current date - 1, 'dd') < 10 then calendar = to_char(current date - 1, 'yyyy-mm')\n"
-                + "        else calendar = to_char(current date + 1 month, 'yyyy-mm') end)";
+                + "        when to_char(current date - 1, 'dd') < 10 then to_char(current date - 1, 'yyyy-mm')\n"
+                + "        else to_char(current date + 1 month, 'yyyy-mm') end)";
         return queryDataService.query ( sql );
     }
 
@@ -293,7 +292,7 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
                 + "         select calendar, zb, '股份合计' as fl, sum(zb_value) zb_value\n"
                 + "         from sgmc.v_mc_zb_so_rzjh\n"
                 + "         where zb = '实现供货EVI项目数'\n"
-                + "           and fl in ('汽车板', '冷轧非汽车', '热系', '酸洗')\n"
+                + "           and fl in ('汽车板', '冷轧非汽车', '热系', '酸洗','电工钢')\n"
                 + "           and calendar = to_char(current date - 1 month, 'yyyy-mm')\n"
                 + "         group by calendar, zb\n"
                 + "         union all\n"
@@ -581,11 +580,11 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
 
     @Override
     public Object cpJthjghlNdjh() {
-        String sql = " select calendar, zb, sum(zb_value) zb_value\n"
+        String sql = "select calendar, zb, sum(zb_value) zb_value\n"
                 + "from (\n"
                 + "         SELECT calendar, zb, '股份合计' as fl, sum(zb_value) zb_value\n"
                 + "         FROM SGMC.V_MC_ZB_SO_RZJH\n"
-                + "         where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗')\n"
+                + "         where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗', '电工钢')\n"
                 + "           and calendar = to_char(current date - 1 month, 'yyyy-mm')\n"
                 + "         group by calendar, zb\n"
                 + "         union all\n"
@@ -613,7 +612,7 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
                 + "from (\n"
                 + "         SELECT calendar, zb, '股份合计' as fl, sum(zb_value) zb_value\n"
                 + "         FROM SGMC.V_MC_ZB_SO_RZJH\n"
-                + "         where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗')\n"
+                + "         where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗','硅钢')\n"
                 + "           and calendar = to_char(current date - 1 month, 'yyyy-mm')\n"
                 + "         group by calendar, zb\n"
                 + "         union all\n"
@@ -693,7 +692,7 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
         String sql = "select calendar, sum(zb_value) zb_value\n"
                 + "from sgmc.v_mc_zb_so_rzjh\n"
                 + "where zb = '实现供货EVI项目数'\n"
-                + "  and fl in ('汽车板', '冷轧非汽车', '热系', '酸洗')\n"
+                + "  and fl in ('汽车板', '冷轧非汽车', '热系', '酸洗','电工钢')\n"
                 + "  and calendar = to_char(current date - 1 month, 'yyyy-mm')\n"
                 + "group by calendar";
         return queryDataService.query ( sql );
@@ -703,7 +702,7 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
     public Object cpGfhjghlNdjh() {
         String sql = "SELECT calendar, zb, sum(zb_value) zb_value\n"
                 + "FROM SGMC.V_MC_ZB_SO_RZJH\n"
-                + "where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗')\n"
+                + "where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗','电工钢')\n"
                 + "  and calendar = to_char(current date - 1 month, 'yyyy-mm')\n"
                 + "group by calendar, zb";
         return queryDataService.query ( sql );
@@ -713,7 +712,7 @@ public class XiaoshouServiceQsImpl implements XiaoshouService {
     public Object cpGfhjghlYdjh() {
         String sql = "SELECT calendar, zb, sum(zb_value) zb_value\n"
                 + "FROM SGMC.V_MC_ZB_SO_RZJH\n"
-                + "where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗')\n"
+                + "where fl in ('汽车板', '冷轧非汽车', '热系', '酸洗','电工钢')\n"
                 + "  and calendar = to_char(current date - 1 month, 'yyyy-mm')\n"
                 + "group by calendar, zb";
         return queryDataService.query ( sql );

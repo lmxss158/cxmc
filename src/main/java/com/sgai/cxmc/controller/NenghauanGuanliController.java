@@ -136,6 +136,87 @@ public class NenghauanGuanliController {
         return JsonData.success (getNenghuanGuanliService ( subCode ).getPwzlTbjhb( typeName ));
     }
 
+    /**
+     * 能环管理-排污总量-累计（颗粒物、二氧化硫、氮氧化物）
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/pwzl/lj")
+    @ResponseBody
+    public Object wlglPwzlLj(@RequestParam("subCode") String subCode,
+                                @RequestParam("typeCode") String typeCode) {
+        String typeName = getNhglPwzlName(typeCode);
+        if (typeName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getPwzlLj( typeName ));
+    }
+    /**
+     * 能环管理-排污总量-月度趋势图（颗粒物、二氧化硫、氮氧化物）
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/pwzl/ydqst")
+    @ResponseBody
+    public Object wlglPwzlYdqst(@RequestParam("subCode") String subCode,
+                                @RequestParam("typeCode") String typeCode) {
+        String typeName = getNhglPwzlName(typeCode);
+        if (typeName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getPwzlYdqst( typeName ));
+    }
+
+    /**
+     * 能环管理-能源管理-月度实际（吨钢综合能耗、吨钢综合电耗、吨钢耗新水）
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/nygl/ydsj")
+    @ResponseBody
+    public Object wlglNyglYdsj(@RequestParam("subCode") String subCode) {
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getNyglYdsj( ));
+    }
+    /**
+     * 能环管理-能源管理-年度实际（吨钢综合能耗、吨钢综合电耗、吨钢耗新水）
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/nygl/ndsj")
+    @ResponseBody
+    public Object wlglNyglNdsj(@RequestParam("subCode") String subCode) {
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getNyglNdsj( ));
+    }
+
+    /**
+     * 能环管理-能源管理-月度趋势图（吨钢综合能耗、吨钢综合电耗、吨钢耗新水）
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/nygl/ydqst")
+    @ResponseBody
+    public Object wlglNyglYdqst(@RequestParam("subCode") String subCode,
+                                @RequestParam("typeCode") String typeCode) {
+        String typeName = getNhglNyglzlName(typeCode);
+        if (typeName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getNyglYdqdt( typeName ));
+    }
+
+    private String getNhglNyglzlName(String typeCode) {
+        switch (typeCode){
+            case "dgzhnh":
+                return "吨钢综合能耗";
+            case "dgdh":
+                return "吨钢电耗";
+            case "dghxs":
+                return "吨钢耗新水";
+            default:
+                return null;
+        }
+    }
+
     private String getNhglPwzlName(String typeCode) {
         switch (typeCode){
             case "klw":

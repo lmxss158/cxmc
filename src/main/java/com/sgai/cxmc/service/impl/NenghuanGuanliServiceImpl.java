@@ -366,7 +366,14 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
 
     @Override
     public Object getPwzlKedyjh() {
-        String sql = "select * from SGMC.V_MC_ZB_NY_HJGL where zb = '月计划'";
+        String sql = "select *\n"
+                + "from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "where zb = '月计划'\n"
+                + "  and calendar =\n"
+                + "      (select max(calendar)\n"
+                + "       from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "       where zb = '月实际'\n"
+                + "         and zb_value <> 0)";
         return queryDataService.query ( sql );
     }
 
@@ -375,24 +382,109 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
         String sql = "select *\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
-                + "  and calendar <= to_char(current date - 1 month, 'yyyy-mm')\n"
-                + "  and calendar >= to_char(trunc(current date, 'yyyy'), 'yyyy-mm')\n"
+                + "  and calendar =\n"
+                + "      (select max(calendar)\n"
+                + "       from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "       where zb = '月实际'\n"
+                + "         and zb_value <> 0)\n"
                 + "order by calendar";
         return queryDataService.query ( sql );
     }
 
     @Override
     public Object getPwzlTbjhb(String typeName) {
-        String sql = "select *\n"
+        String sql = "select CALENDAR, ZB || '最大月份' ysjzdyf, ZQ, ZB_VALUE\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
                 + "  and zq = '"+typeName+"'\n"
-                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '二氧化硫' and zb_value <> 0)\n"
-                + "  and calendar > (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 14 month, 'yyyy-mm')\n"
+                + "  and calendar = (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '"+typeName+"' and zb_value <> 0)\n"
+                + "union all\n"
+                + "select CALENDAR, ZB || '减去1个月' ysjjqygy, ZQ, ZB_VALUE\n"
+                + "from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "where zb = '月实际'\n"
+                + "  and zq = '"+typeName+"'\n"
+                + "  and calendar = (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 1 month, 'yyyy-mm')\n"
+                + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "                  where zb = '月实际'\n"
+                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zb_value <> 0)\n"
+                + "union all\n"
+                + "select CALENDAR, ZB || '减去13个月' ysjjqssgy, ZQ, ZB_VALUE\n"
+                + "from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "where zb = '月实际'\n"
+                + "  and zq = '"+typeName+"'\n"
+                + "  and calendar = (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 13 month, 'yyyy-mm')\n"
                 + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "                  where zb = '月实际'\n"
                 + "                    and zq = '"+typeName+"'\n"
                 + "                    and zb_value <> 0)";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getPwzlYdqst(String typeName) {
+        String sql = "select *\n"
+                + "from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "where zb = '月实际'\n"
+                + "  and zq = '"+typeName+"'\n"
+                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '"+typeName+"' and zb_value <> 0)\n"
+                + "  and calendar > (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
+                + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "                  where zb = '月实际'\n"
+                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zb_value <> 0)\n"
+                + "order by calendar";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getPwzlLj(String typeName) {
+        String sql = "select *\n"
+                + "from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "where zb = '月实际'\n"
+                + "  and zq = '"+typeName+"'\n"
+                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '"+typeName+"' and zb_value <> 0)\n"
+                + "  and calendar >=(select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
+                + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
+                + "                  where zb = '月实际'\n"
+                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zb_value <> 0)\n"
+                + "order by calendar";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getNyglYdsj() {
+        String sql = "select *\n"
+                + "from sgmc.V_MC_ZB_NY\n"
+                + "where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水')\n"
+                + "  and CALENDAR =\n"
+                + "      (select max(calendar) from sgmc.V_MC_ZB_NY where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水') and zb_value <> 0)\n"
+                + "order by calendar";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getNyglNdsj() {
+        String sql = "select calendar,zb_name, zb_value\n"
+                + "from sgmc.V_MC_ZB_NY\n"
+                + "where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水')\n"
+                + "  and calendar = to_char(current date, 'yyyy')";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getNyglYdqdt( String typeName ) {
+        String sql = "select *\n"
+                + "from sgmc.V_MC_ZB_NY\n"
+                + "where zb_name = '"+typeName+"'\n"
+                + "  and calendar >= (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
+                + "                   from sgmc.V_MC_ZB_NY\n"
+                + "                   where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水')\n"
+                + "                     and zb_value <> 0)\n"
+                + "  and CALENDAR <=\n"
+                + "      (select max(calendar) from sgmc.V_MC_ZB_NY where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水') and zb_value <> 0)\n"
+                + "order by calendar";
         return queryDataService.query ( sql );
     }
 }
