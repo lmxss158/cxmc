@@ -62,13 +62,8 @@ public class WuliuGuanliController {
      */
     @GetMapping("/qjysysgchxt")
     @ResponseBody
-    public Object wlglQjysysgchxt(@RequestParam("subCode") String subCode,
-                              @RequestParam("typeCode") String typeCode  ){
-        String typeName = getRddlqstTypeName(typeCode);
-        if (typeName == null){
-            return JsonData.fail ( "参数无效" );
-        }
-        return JsonData.success (getWuliuGuanliService ( subCode ).getQjysysgchxt(typeName));
+    public Object wlglQjysysgchxt(@RequestParam("subCode") String subCode){
+        return JsonData.success (getWuliuGuanliService ( subCode ).getQjysysgchxt());
     }
 
     /**
@@ -115,13 +110,8 @@ public class WuliuGuanliController {
      */
     @GetMapping("/gffyhxt")
     @ResponseBody
-    public Object wlglGffyhxt(@RequestParam("subCode") String subCode,
-                              @RequestParam("typeCode") String typeCode  ){
-        String typeName = getRddlqstTypeName(typeCode);
-        if (typeName == null){
-            return JsonData.fail ( "参数无效" );
-        }
-        return JsonData.success (getWuliuGuanliService ( subCode ).getGffyhxt(typeName));
+    public Object wlglGffyhxt(@RequestParam("subCode") String subCode){
+        return JsonData.success (getWuliuGuanliService ( subCode ).getGffyhxt());
     }
 
     private String getRddlqstTypeName(String typeCode) {

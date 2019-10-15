@@ -129,8 +129,8 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
                 + "                             (jr.PM25, 'PM25'),\n"
                 + "                             (jr.PM10, 'PM10')\n"
                 + "                           ) AS VT (ZB_VALUE, ZB_NAME)))\n"
-                + "where ETL_FREQ = '"+timeName+"'\n"
-                + "  and ZB_NAME = '"+indexName+"'";
+                + "where ETL_FREQ = '" + timeName + "'\n"
+                + "  and ZB_NAME = '" + indexName + "'";
         return queryDataService.query ( sql );
     }
 
@@ -259,7 +259,7 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
                 + "                 (jr.PM25, 'PM25'),\n"
                 + "                 (jr.PM10, 'PM10')\n"
                 + "               ) AS VT (ZB_VALUE, ZB_NAME))\n"
-                + "where SN_NAME = '"+companyName+"'\n"
+                + "where SN_NAME = '" + companyName + "'\n"
                 + "  and calendar = to_char(current date - 1, 'yyyy-mm-dd')";
         return queryDataService.query ( sql );
     }
@@ -350,7 +350,7 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
                 + "                 (jr.PM25, 'PM25'),\n"
                 + "                 (jr.PM10, 'PM10')\n"
                 + "               ) AS VT (ZB_VALUE, ZB_NAME))\n"
-                + "where SN_NAME = '"+companyName+"'\n"
+                + "where SN_NAME = '" + companyName + "'\n"
                 + "  AND CALENDAR = to_char(TRUNC(SYSDATE - 1), 'yyyy-MM-dd')";
         return queryDataService.query ( sql );
     }
@@ -396,27 +396,27 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
         String sql = "select CALENDAR, ZB || '最大月份' ysjzdyf, ZQ, ZB_VALUE\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
-                + "  and zq = '"+typeName+"'\n"
-                + "  and calendar = (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '"+typeName+"' and zb_value <> 0)\n"
+                + "  and zq = '" + typeName + "'\n"
+                + "  and calendar = (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '" + typeName + "' and zb_value <> 0)\n"
                 + "union all\n"
                 + "select CALENDAR, ZB || '减去1个月' ysjjqygy, ZQ, ZB_VALUE\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
-                + "  and zq = '"+typeName+"'\n"
+                + "  and zq = '" + typeName + "'\n"
                 + "  and calendar = (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 1 month, 'yyyy-mm')\n"
                 + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "                  where zb = '月实际'\n"
-                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zq = '" + typeName + "'\n"
                 + "                    and zb_value <> 0)\n"
                 + "union all\n"
                 + "select CALENDAR, ZB || '减去13个月' ysjjqssgy, ZQ, ZB_VALUE\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
-                + "  and zq = '"+typeName+"'\n"
+                + "  and zq = '" + typeName + "'\n"
                 + "  and calendar = (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 13 month, 'yyyy-mm')\n"
                 + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "                  where zb = '月实际'\n"
-                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zq = '" + typeName + "'\n"
                 + "                    and zb_value <> 0)";
         return queryDataService.query ( sql );
     }
@@ -426,12 +426,12 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
         String sql = "select *\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
-                + "  and zq = '"+typeName+"'\n"
-                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '"+typeName+"' and zb_value <> 0)\n"
+                + "  and zq = '" + typeName + "'\n"
+                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '" + typeName + "' and zb_value <> 0)\n"
                 + "  and calendar > (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
                 + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "                  where zb = '月实际'\n"
-                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zq = '" + typeName + "'\n"
                 + "                    and zb_value <> 0)\n"
                 + "order by calendar";
         return queryDataService.query ( sql );
@@ -442,12 +442,12 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
         String sql = "select *\n"
                 + "from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "where zb = '月实际'\n"
-                + "  and zq = '"+typeName+"'\n"
-                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '"+typeName+"' and zb_value <> 0)\n"
+                + "  and zq = '" + typeName + "'\n"
+                + "  and calendar <= (select max(calendar) from SGMC.V_MC_ZB_NY_HJGL where zb = '月实际' and zq = '" + typeName + "' and zb_value <> 0)\n"
                 + "  and calendar >=(select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
                 + "                  from SGMC.V_MC_ZB_NY_HJGL\n"
                 + "                  where zb = '月实际'\n"
-                + "                    and zq = '"+typeName+"'\n"
+                + "                    and zq = '" + typeName + "'\n"
                 + "                    and zb_value <> 0)\n"
                 + "order by calendar";
         return queryDataService.query ( sql );
@@ -474,10 +474,10 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
     }
 
     @Override
-    public Object getNyglYdqdt( String typeName ) {
+    public Object getNyglYdqdt(String typeName) {
         String sql = "select *\n"
                 + "from sgmc.V_MC_ZB_NY\n"
-                + "where zb_name = '"+typeName+"'\n"
+                + "where zb_name = '" + typeName + "'\n"
                 + "  and calendar >= (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
                 + "                   from sgmc.V_MC_ZB_NY\n"
                 + "                   where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水')\n"
@@ -485,6 +485,134 @@ public class NenghuanGuanliServiceImpl implements NenghuanGuanliService {
                 + "  and CALENDAR <=\n"
                 + "      (select max(calendar) from sgmc.V_MC_ZB_NY where zb_name in ('吨钢综合能耗', '吨钢电耗', '吨钢耗新水') and zb_value <> 0)\n"
                 + "order by calendar";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getGxnhYdjqst(String companyName) {
+        String sql = "select *\n"
+                + "from (\n"
+                + "         select calendar,\n"
+                + "                zb_code,\n"
+                + "                decode(zb_name, '二冷轧取向', '取向', '一冷轧', '无取向中低牌号', '二冷轧无取向', '无取向高牌号', '冷轧工序', '智新', '炼铁工序', '炼铁', '酸洗线',\n"
+                + "                       '酸洗', zb_name) as                             zb_name,\n"
+                + "                cast(round(zb_value * 10 / 10, 2) as decimal(20, 2)) zb_value,\n"
+                + "                unit_name,\n"
+                + "                etl_freq\n"
+                + "         from sgmc.V_MC_ZB_NY\n"
+                + "         where zb_name in ('一炼钢', '冷轧工序', '二炼钢', '炼铁工序', '一热轧', '二热轧', '二冷轧取向', '一冷轧', '二冷轧无取向', '酸洗线'))\n"
+                + "where zb_name = '" + companyName + "'\n"
+                + "  and calendar > (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 3 month, 'yyyy-mm')\n"
+                + "                  from sgmc.V_MC_ZB_NY\n"
+                + "                  where zb_name in ('一炼钢', '冷轧工序', '二炼钢', '炼铁工序', '一热轧', '二热轧', '二冷轧取向', '一冷轧', '二冷轧无取向', '酸洗线')\n"
+                + "                    and zb_value <> 0)\n"
+                + "  and calendar <= (select max(calendar)\n"
+                + "                   from sgmc.V_MC_ZB_NY\n"
+                + "                   where zb_name in ('一炼钢', '冷轧工序', '二炼钢', '炼铁工序', '一热轧', '二热轧', '二冷轧取向', '一冷轧', '二冷轧无取向', '酸洗线')\n"
+                + "                     and zb_value <> 0)\n"
+                + "order by calendar";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getGxnhNdsj(String companyName) {
+        String sql = "select *\n"
+                + "from (\n"
+                + "         select calendar,\n"
+                + "                zb_code,\n"
+                + "                decode(zb_name, '二冷轧取向', '取向', '一冷轧', '无取向中低牌号', '二冷轧无取向', '无取向高牌号', '冷轧工序', '智新', '炼铁工序', '炼铁', '酸洗线',\n"
+                + "                       '酸洗', zb_name) as                             zb_name,\n"
+                + "                cast(round(zb_value * 10 / 10, 2) as decimal(20, 2)) zb_value,\n"
+                + "                unit_name,\n"
+                + "                etl_freq\n"
+                + "         from sgmc.V_MC_ZB_NY\n"
+                + "         where zb_name in ('一炼钢', '冷轧工序', '二炼钢', '炼铁工序', '一热轧', '二热轧', '二冷轧取向', '一冷轧', '二冷轧无取向', '酸洗线'))\n"
+                + "where zb_name = '" + companyName + "'\n"
+                + "  and calendar = to_char(current date, 'yyyy')";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getGxnycbYdjqst(String companyName) {
+        String sql = "select *\n"
+                + "from (select calendar,\n"
+                + "             zb_code,\n"
+                + "             decode(zb_name, '能源_单位成本', '公辅_单位成本', zb_name) as    zb_name,\n"
+                + "             cast(round(zb_value * 10 / 10, 2) as decimal(20, 2)) zb_value\n"
+                + "      from sgmc.mc_sa_zb_ny_01)\n"
+                + "where zb_name = '" + companyName + "_单位成本'\n"
+                + "  and calendar > (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
+                + "                  from sgmc.mc_sa_zb_ny_01\n"
+                + "                  where zb_name = '" + companyName + "_单位成本'\n"
+                + "                    and zb_value <> 0)\n"
+                + "  and calendar <= (select max(calendar)\n"
+                + "                   from sgmc.mc_sa_zb_ny_01\n"
+                + "                   where zb_name = '" + companyName + "_单位成本'\n"
+                + "                     and zb_value <> 0)\n"
+                + "order by calendar";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getGxnycbNdsj(String companyName) {
+        String sql = "select *\n"
+                + "from (select calendar,\n"
+                + "             zb_code,\n"
+                + "             decode(zb_name, '能源_单位成本', '公辅_单位成本', zb_name) as    zb_name,\n"
+                + "             cast(round(zb_value * 10 / 10, 2) as decimal(20, 2)) zb_value\n"
+                + "      from sgmc.mc_sa_zb_ny_01)\n"
+                + "where zb_name = '" + companyName + "_单位成本'\n"
+                + "  and calendar = to_char(current date, 'yyyy')";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getHdlYdjqst(String companyName) {
+        String sql = "select *\n"
+                + "from (\n"
+                + "         select calendar,\n"
+                + "                zb_code,\n"
+                + "                decode(zb_name, '二冷轧取向电耗', '取向电耗', '二冷轧无取向电耗', '无取向高牌号电耗', '冷轧工序电耗', '智新电耗', '炼铁工序电耗', '炼铁电耗', '酸洗线电耗',\n"
+                + "                       '酸洗电耗', '一冷轧电耗', '无取向中低牌号电耗', zb_name) as     zb_name,\n"
+                + "                cast(round(zb_value * 10 / 10, 2) as decimal(20, 2)) zb_value,\n"
+                + "                unit_name,\n"
+                + "                etl_freq\n"
+                + "         from sgmc.V_MC_ZB_NY\n"
+                + "         where zb_name in\n"
+                + "               ('一冷轧电耗', '一炼钢电耗', '一热轧电耗', '二冷轧取向电耗', '二冷轧无取向电耗', '二炼钢电耗', '二热轧电耗', '冷轧工序电耗', '炼铁工序电耗', '酸洗线电耗'))\n"
+                + "where zb_name = '"+companyName+"电耗'\n"
+                + "  and calendar > (select to_char(to_date(max(CALENDAR), 'yyyy-mm') - 6 month, 'yyyy-mm')\n"
+                + "                  from sgmc.V_MC_ZB_NY\n"
+                + "                  where zb_name in\n"
+                + "                        ('一冷轧电耗', '一炼钢电耗', '一热轧电耗', '二冷轧取向电耗', '二冷轧无取向电耗', '二炼钢电耗', '二热轧电耗', '冷轧工序电耗', '炼铁工序电耗',\n"
+                + "                         '酸洗线电耗')\n"
+                + "                    and zb_value <> 0)\n"
+                + "  and calendar <= (select max(calendar)\n"
+                + "                   from sgmc.V_MC_ZB_NY\n"
+                + "                   where zb_name in\n"
+                + "                         ('一冷轧电耗', '一炼钢电耗', '一热轧电耗', '二冷轧取向电耗', '二冷轧无取向电耗', '二炼钢电耗', '二热轧电耗', '冷轧工序电耗', '炼铁工序电耗',\n"
+                + "                          '酸洗线电耗')\n"
+                + "                     and zb_value <> 0)\n"
+                + "order by calendar\n";
+        return queryDataService.query ( sql );
+    }
+
+    @Override
+    public Object getHdlNdsj(String companyName) {
+        String sql = "select *\n"
+                + "from (\n"
+                + "         select calendar,\n"
+                + "                zb_code,\n"
+                + "                decode(zb_name, '二冷轧取向电耗', '取向电耗', '二冷轧无取向电耗', '无取向高牌号电耗', '冷轧工序电耗', '智新电耗', '炼铁工序电耗', '炼铁电耗', '酸洗线电耗',\n"
+                + "                       '酸洗电耗', '一冷轧电耗', '无取向中低牌号电耗', zb_name) as     zb_name,\n"
+                + "                cast(round(zb_value * 10 / 10, 2) as decimal(20, 2)) zb_value,\n"
+                + "                unit_name,\n"
+                + "                etl_freq\n"
+                + "         from sgmc.V_MC_ZB_NY\n"
+                + "         where zb_name in\n"
+                + "               ('一冷轧电耗', '一炼钢电耗', '一热轧电耗', '二冷轧取向电耗', '二冷轧无取向电耗', '二炼钢电耗', '二热轧电耗', '冷轧工序电耗', '炼铁工序电耗', '酸洗线电耗'))\n"
+                + "where zb_name like '%"+companyName+"电耗'\n"
+                + "  and calendar = to_char(current date, 'yyyy')";
         return queryDataService.query ( sql );
     }
 }

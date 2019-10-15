@@ -204,6 +204,127 @@ public class NenghauanGuanliController {
         return JsonData.success (getNenghuanGuanliService ( subCode ).getNyglYdqdt( typeName ));
     }
 
+    /**
+     * 能环管理-能源管理-工序能耗-月度及趋势图
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/gxnh/ydjqst")
+    @ResponseBody
+    public Object wlglGxnhYdjqst(@RequestParam("subCode") String subCode,
+                                @RequestParam("companyCode") String companyCode) {
+        String companyName = getGxnlCompanyName(companyCode);
+        if (companyName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getGxnhYdjqst( companyName ));
+    }
+
+    /**
+     * 能环管理-能源管理-工序能耗-年度实绩
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/gxnh/ndsj")
+    @ResponseBody
+    public Object wlglGxnhNdsj(@RequestParam("subCode") String subCode,
+                                 @RequestParam("companyCode") String companyCode) {
+        String companyName = getGxnlCompanyName(companyCode);
+        if (companyName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getGxnhNdsj( companyName ));
+    }
+
+    /**
+     * 能环管理-能源管理-工序能源成本-月度实绩及月度实绩趋势图
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/gxnycb/ydjqst")
+    @ResponseBody
+    public Object wlglGxnycbYdjqst(@RequestParam("subCode") String subCode,
+                                 @RequestParam("companyCode") String companyCode) {
+        String companyName = getGxnlCompanyName(companyCode);
+        if (companyName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getGxnycbYdjqst( companyName ));
+    }
+
+    /**
+     * 能环管理-能源管理-工序能源成本-年度实绩
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/gxnycb/ndsj")
+    @ResponseBody
+    public Object wlglGxnycbNdsj(@RequestParam("subCode") String subCode,
+                               @RequestParam("companyCode") String companyCode) {
+        String companyName = getGxnlCompanyName(companyCode);
+        if (companyName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getGxnycbNdsj( companyName ));
+    }
+
+    /**
+     * 能环管理-能源管理-耗电量-月度实绩及月度实绩趋势图
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/hdl/ydjqst")
+    @ResponseBody
+    public Object wlglHdlYdjqst(@RequestParam("subCode") String subCode,
+                                   @RequestParam("companyCode") String companyCode) {
+        String companyName = getGxnlCompanyName(companyCode);
+        if (companyName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getHdlYdjqst( companyName ));
+    }
+
+    /**
+     * 能环管理-能源管理-耗电量-年度实绩
+     * @param subCode
+     * @return
+     */
+    @RequestMapping("/hdl/ndsj")
+    @ResponseBody
+    public Object wlglHdlNdsj(@RequestParam("subCode") String subCode,
+                                 @RequestParam("companyCode") String companyCode) {
+        String companyName = getGxnlCompanyName(companyCode);
+        if (companyName == null ){
+            return JsonData.fail ( "参数无效" );
+        }
+        return JsonData.success (getNenghuanGuanliService ( subCode ).getHdlNdsj( companyName ));
+    }
+
+    private String getGxnlCompanyName(String companyCode) {
+        switch (companyCode){
+            case "gf":
+                return "公辅";
+            case "sx":
+                return "酸洗";
+            case "lt":
+                return "炼铁";
+            case "lg2":
+                return "二炼钢";
+            case "rz2":
+                return "二热轧";
+            case "lg1":
+                return "一炼钢";
+            case "rz1":
+                return "一热轧";
+            case "zx":
+                return "智新";
+            case "sylz":
+                return "顺义冷轧";
+            default:
+                return null;
+        }
+    }
+
     private String getNhglNyglzlName(String typeCode) {
         switch (typeCode){
             case "dgzhnh":

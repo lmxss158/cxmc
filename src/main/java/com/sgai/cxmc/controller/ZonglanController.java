@@ -3,7 +3,6 @@ package com.sgai.cxmc.controller;
 import com.sgai.cxmc.annotation.MenuAcls;
 import com.sgai.cxmc.common.JsonData;
 import com.sgai.cxmc.enums.SubCodeEnum;
-import com.sgai.cxmc.service.UserService;
 import com.sgai.cxmc.service.ZonglanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

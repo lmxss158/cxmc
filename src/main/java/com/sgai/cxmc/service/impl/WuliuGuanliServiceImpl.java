@@ -43,11 +43,11 @@ public class WuliuGuanliServiceImpl implements WuliuGuanliService {
     }
 
     @Override
-    public Object getQjysysgchxt(String typeName) {
+    public Object getQjysysgchxt() {
         String sql = "select calendar, zb_ysfs, sum(zb_value / 10000) as zb_value\n"
                 + "from sgmc.MC_SA_ZB_SL_02\n"
                 + "where zb_name like '%累计%'\n"
-                + "  and zb_ysfs = '"+typeName+"'\n"
+                + "and zb_ysfs <> '火汽运'"
                 + "  and calendar = to_char(current date - 1, 'yyyy-mm-dd')\n"
                 + "group by calendar, zb_ysfs";
         return queryDataService.query ( sql );
@@ -86,20 +86,32 @@ public class WuliuGuanliServiceImpl implements WuliuGuanliService {
     }
 
     @Override
-    public Object getGffyhxt(String typeName) {
-        String sql = "select sum(zb_value) as zb_value\n"
-                + "from (\n"
-                + "select '"+typeName+"',\n"
-                + "       to_char(current date, 'yyyy-mm')     calendar,\n"
-                + "       SUBSTR(ZB_NAME, INSTR(ZB_NAME, '_', 1, 2) + 1, instr(zb_name, '_', 1, 3) - instr(zb_name, '_', 1, 2) - 1),\n"
-                + "       round((sum(zb_value) / 10000), 2) as zb_value\n"
-                + "from sgmc.MC_SA_ZB_SL_01\n"
-                + "where calendar <= to_char(current date, 'yyyy-mm-dd')\n"
-                + "  and left(calendar, 7) = to_char(trunc(sysdate - 1, 'dd'), 'yyyy-mm')\n"
-                + "  and ZB_NAME like '%首钢迁钢_"+typeName+"%发运量'\n"
-                + "\n"
-                + "group by zb_name\n"
-                + "order by zb_value desc)";
+    public Object getGffyhxt() {
+        String sql = "select calendar, tieyun, sum(zb_value) as zb_value\n"
+                + "from (select '汽运'                              as tieyun,\n"
+                + "             to_char(current date -1 , 'yyyy-mm-dd')     calendar,\n"
+                + "             SUBSTR(ZB_NAME, INSTR(ZB_NAME, '_', 1, 2) + 1, instr(zb_name, '_', 1, 3) - instr(zb_name, '_', 1, 2) - 1),\n"
+                + "             round((sum(zb_value) / 10000), 2) as zb_value\n"
+                + "      from sgmc.MC_SA_ZB_SL_01\n"
+                + "      where calendar <= to_char(current date, 'yyyy-mm-dd')\n"
+                + "        and left(calendar, 7) = to_char(trunc(sysdate - 1, 'dd'), 'yyyy-mm')\n"
+                + "        and ZB_NAME like '%首钢迁钢_汽运%发运量'\n"
+                + "      group by zb_name\n"
+                + "      order by zb_value desc)\n"
+                + "group by calendar, tieyun\n"
+                + "union all\n"
+                + "select calendar, tieyun, sum(zb_value) as zb_value\n"
+                + "from (select '铁运'                              as tieyun,\n"
+                + "             to_char(current date -1, 'yyyy-mm-dd')     calendar,\n"
+                + "             SUBSTR(ZB_NAME, INSTR(ZB_NAME, '_', 1, 2) + 1, instr(zb_name, '_', 1, 3) - instr(zb_name, '_', 1, 2) - 1),\n"
+                + "             round((sum(zb_value) / 10000), 2) as zb_value\n"
+                + "      from sgmc.MC_SA_ZB_SL_01\n"
+                + "      where calendar <= to_char(current date, 'yyyy-mm-dd')\n"
+                + "        and left(calendar, 7) = to_char(trunc(sysdate - 1, 'dd'), 'yyyy-mm')\n"
+                + "        and ZB_NAME like '%首钢迁钢_铁运%发运量'\n"
+                + "      group by zb_name\n"
+                + "      order by zb_value desc)\n"
+                + "group by calendar, tieyun";
         return queryDataService.query ( sql );
     }
 }

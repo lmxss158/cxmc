@@ -243,10 +243,10 @@ public class ZonglanServiceQsImpl implements ZonglanService {
                 + "            when to_char(current date - 1, 'mm') = '12' then DEC\n"
                 + "           end)        as zb_value\n"
                 + "from SGMC.MC_WH_ZB_ZXTB\n"
-                + "where (\n"
+                + "where calendar =(\n"
                 + "          case\n"
-                + "              when calendar = to_char(current date - 1, 'dd') < 10 then calendar = to_char(current date - 1, 'yyyy-mm')\n"
-                + "              else calendar = to_char(current date + 1 month, 'yyyy-mm') end)\n"
+                + "              when to_char(current date - 1, 'dd') < 10 then to_char(current date - 1, 'yyyy-mm')\n"
+                + "              else to_char(current date + 1 month, 'yyyy-mm') end)\n"
                 + "union all\n"
                 + "select zb_code,\n"
                 + "       decode(zb_name, '总计_次月接单量', '迁顺_总计_次月接单量计划', '汽车板_次月接单量', '冷轧汽车板实际量', '汽车酸洗_次月接单量', '汽车酸洗实际量', '迁顺_汽车酸洗_次月接单量计划',\n"
@@ -256,10 +256,10 @@ public class ZonglanServiceQsImpl implements ZonglanService {
                 + "from sgmc.MC_SA_ZB_SO_01\n"
                 + "where zb_name in\n"
                 + "      ('总计_次月接单量', '迁顺_总计_次月接单量计划', '汽车板_次月接单量', '汽车酸洗_次月接单量', '迁顺_汽车酸洗_次月接单量计划', '迁顺_冷轧汽车板_次月接单量计划', '硅钢_次月接单量')\n"
-                + "  and (\n"
+                + "  and calendar =(\n"
                 + "    case\n"
-                + "        when calendar = to_char(current date - 1, 'dd') < 10 then calendar = to_char(current date - 1, 'yyyy-mm')\n"
-                + "        else calendar = to_char(current date + 1 month, 'yyyy-mm') end)";
+                + "        when to_char(current date - 1, 'dd') < 10 then to_char(current date - 1, 'yyyy-mm')\n"
+                + "        else to_char(current date + 1 month, 'yyyy-mm') end)";
         return queryDataService.query(sql);
     }
 

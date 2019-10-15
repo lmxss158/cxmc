@@ -12,7 +12,7 @@ public interface WuliuGuanliService {
 
     Object getRddlQst(String typeName);
 
-    Object getQjysysgchxt(String typeName);
+    Object getQjysysgchxt();
 
     Object getCpfylZfyl();
 
@@ -20,5 +20,5 @@ public interface WuliuGuanliService {
 
     Object getRfylQst(String typeName);
 
-    Object getGffyhxt(String typeName);
+    Object getGffyhxt();
 }
